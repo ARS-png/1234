@@ -1,0 +1,56 @@
+class Unit:
+    def __init__(self,unitId,team):
+        self.unitId = unitId
+        self.team = team
+
+class Soldier(Unit):
+    def FollowHero(self,hero):
+          print(f"Солдат {self.unitId} следует за героем {hero.unitId}")
+
+class Hero(Unit):
+    def __init__(self,unitId,team):
+        super().__init__(unitId,team)
+        self.level = 1
+    def LevelUp(self):
+        self.level+=1
+        print(f"Герой {self.unitId} повысил уровень до {self.level}")
+ 
+import random
+
+hero1 = Hero(1,"Синие")
+hero2 = Hero(2,"Красные")
+
+team1s = []
+team2s = []
+
+for i in range(10):
+    soldier_id = i+1
+    team = random.choice(["Синие","Красные"])
+    soldier = Soldier(soldier_id,team)
+    if(team == "Синие"):
+        team1s.append(soldier)
+    else:
+        team2s.append(soldier)
+
+print(f"количество солдат в первой команде:{len(team1s)}")
+print(f"количество солдат во второй команде:{len(team2s)}")
+
+if len(team1s)>len(team2s):
+    hero1.LevelUp()
+else:
+    hero2.LevelUp()
+    
+team1s[0].FollowHero(hero1)
+print(f"солдат с id: {team1s[1].unitId}  пошел тихонечко за геровем с id: {hero1.unitId}")
+
+
+
+
+
+
+
+
+
+
+
+
